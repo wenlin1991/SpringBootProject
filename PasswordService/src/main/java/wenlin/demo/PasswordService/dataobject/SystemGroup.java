@@ -3,10 +3,7 @@ package wenlin.demo.PasswordService.dataobject;
 import lombok.Getter;
 import wenlin.demo.PasswordService.utils.StringListConverter;
 
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -17,6 +14,7 @@ import java.util.List;
  */
 @Entity
 @Getter
+@Table(name = "system_group")
 public class SystemGroup {
     private String name;
 

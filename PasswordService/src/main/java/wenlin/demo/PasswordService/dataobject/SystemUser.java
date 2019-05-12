@@ -4,6 +4,7 @@ import lombok.Getter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * SystemUser represents a user in Linux/Unix like system.
@@ -13,6 +14,7 @@ import javax.persistence.Id;
  */
 @Entity
 @Getter
+@Table(name = "system_user")
 public class SystemUser {
 
     private String name;
