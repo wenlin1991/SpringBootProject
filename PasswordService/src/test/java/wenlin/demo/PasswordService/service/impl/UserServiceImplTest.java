@@ -22,7 +22,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@AutoConfigureTestDatabase
 class UserServiceImplTest {
 
     private UserServiceImpl userServiceImpl;
