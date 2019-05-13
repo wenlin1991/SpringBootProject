@@ -103,7 +103,7 @@ public class DataCleaner {
             return null;
         }
         String name = (String) input.get(0)[0];
-        int gid = Integer.valueOf((String) input.get(0)[1]);
+        int gid = (Integer) input.get(0)[1];
         List<String> groupMembers = new ArrayList<>();
         for (Object[] entry : input) {
             groupMembers.add((String) entry[2]);

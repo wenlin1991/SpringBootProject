@@ -26,8 +26,8 @@ public interface UserRepository extends JpaRepository<SystemUser, Integer> {
     // TODO: fix select message accordingly
     @Query(value = "SELECT u.name as name, u.gid as gid, g.name as member " +
             "FROM system_user u, system_group g " +
-            "WHERE u.name=:name AND g.members LIKE %:name%", nativeQuery = true)
-    List<Object[]> findByJoinGroups(@Param("name") String name);
+            "WHERE u.name=:name AND g.members LIKE :likeName", nativeQuery = true)
+    List<Object[]> findByJoinGroups(@Param("name") String name, @Param("likeName") String likeName);
 
     SystemUser findByUid(int id);
 }

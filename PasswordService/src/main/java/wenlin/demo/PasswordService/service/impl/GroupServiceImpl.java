@@ -62,15 +62,15 @@ public class GroupServiceImpl implements GroupService {
      * @return List<SystemGroup>
      */
     @Override
-    public List<SystemGroup> findGroupByCriteria(String name, int gid, List<String> members) {
+    public List<SystemGroup> findGroupByCriteria(String name, Integer gid, List<String> members) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<SystemGroup> query = cb.createQuery(SystemGroup.class);
         Root<SystemGroup> systemGroup = query.from(SystemGroup.class);
 
         List<Predicate> predicates = new ArrayList<>();
-        if (!StringUtils.isBlank(name))
+        if (name != null)
             predicates.add(cb.equal(systemGroup.get("name"), name));
-        if (!StringUtils.isBlank(String.valueOf(gid)))
+        if (gid != null)
             predicates.add(cb.equal(systemGroup.get("gid"), gid));
         query.select(systemGroup)
                 .where(cb.and(predicates.toArray(new Predicate[predicates.size()])));

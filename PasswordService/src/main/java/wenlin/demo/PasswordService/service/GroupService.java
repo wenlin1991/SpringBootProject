@@ -12,5 +12,5 @@ public interface GroupService {
     List<SystemGroup> findAll();
     SystemGroup findByGid(int gid);
     SystemGroup save(SystemGroup systemGroup);
-    List<SystemGroup> findGroupByCriteria(String name, int gid, List<String> members);
+    List<SystemGroup> findGroupByCriteria(String name, Integer gid, List<String> members);
 }

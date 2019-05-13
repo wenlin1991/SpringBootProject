@@ -68,7 +68,8 @@ public class UserServiceImpl implements UserService {
      * @return UserInGroups
      */
     public UserInGroups findUserGroups(String name) {
-        List<Object[]> queryResult = userRepository.findByJoinGroups(name);
+        String likeName = "%"+name+"%";
+        List<Object[]> queryResult = userRepository.findByJoinGroups(name, likeName);
         return dataCleaner.getUserGroups(queryResult);
     }
 
