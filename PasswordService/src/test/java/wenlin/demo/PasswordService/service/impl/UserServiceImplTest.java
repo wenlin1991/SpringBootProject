@@ -96,6 +96,13 @@ class UserServiceImplTest {
         assertEquals(2, result.get(0).getUid());
     }
 
+    @Test
+    void whenFindByNullFields_ReturnAllUsers() {
+        List<SystemUser> result = userServiceImpl.findByFields(null, null, null,
+                null, null, null);
+        assertEquals(2, result.size());
+    }
+
     // TODO : Fix test
     @Test
     void findUserGroups() {

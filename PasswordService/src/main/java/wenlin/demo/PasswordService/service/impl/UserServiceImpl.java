@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
      * @param bin String
      * @return List<SystemUser>
      */
-    public List<SystemUser> findByFields(String name, int uid, int gid,
+    public List<SystemUser> findByFields(String name, Integer uid, Integer gid,
                                    String comment, String home, String bin) {
         return userRepository.findByFields(name, uid, gid, comment, home, bin);
     }

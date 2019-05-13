@@ -11,6 +11,6 @@ public interface UserService {
     List<SystemUser> findAll();
     SystemUser findByUid(int uid);
     SystemUser save(SystemUser user);
-    List<SystemUser> findByFields(String name, int uid, int gid,
+    List<SystemUser> findByFields(String name, Integer uid, Integer gid,
                                   String comment, String home, String bin);
 }

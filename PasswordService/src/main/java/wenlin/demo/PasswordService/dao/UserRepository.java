@@ -17,8 +17,8 @@ public interface UserRepository extends JpaRepository<SystemUser, Integer> {
             " (:comment is null or u.comment=:comment) AND" +
             " (:home is null or u.home=:home) AND (:shell is null or u.shell=:shell)")
     List<SystemUser> findByFields(@Param("name") String name,
-                                  @Param("uid") int uid,
-                                  @Param("gid") int gid,
+                                  @Param("uid") Integer uid,
+                                  @Param("gid") Integer gid,
                                   @Param("comment") String comment,
                                   @Param("home") String home,
                                   @Param("shell") String shell);
