@@ -4,19 +4,25 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.core.AutoConfigureCache;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import wenlin.demo.PasswordService.dao.GroupRepository;
 import wenlin.demo.PasswordService.dao.UserRepository;
+import wenlin.demo.PasswordService.dataobject.SystemGroup;
 import wenlin.demo.PasswordService.dataobject.SystemUser;
+import wenlin.demo.PasswordService.dataobject.UserInGroups;
 
 import javax.transaction.Transactional;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@AutoConfigureTestDatabase
 class UserServiceImplTest {
 
     private UserServiceImpl userServiceImpl;
@@ -105,7 +111,20 @@ class UserServiceImplTest {
 
     // TODO : Fix test
     @Test
+    @Transactional
     void findUserGroups() {
+        SystemGroup docker = new SystemGroup("docker", 2,
+                Arrays.asList(new String[]{"docker", "k8s"}));
+        SystemGroup saveDocker = groupServiceImpl.save(docker);
+        assertNotNull(saveDocker);
+        SystemGroup root = new SystemGroup("root", 1,
+                Arrays.asList(new String[]{"root", "docker"}));
+        SystemGroup saveRoot = groupServiceImpl.save(root);
+        assertNotNull(saveRoot);
+
+        List<UserInGroups> userInGroups = userServiceImpl.findUserGroups("docker");
+        assertNotNull(userInGroups);
+        assertEquals(2, userInGroups.get(0).getGroupMembers().size());
     }
 
     @Autowired

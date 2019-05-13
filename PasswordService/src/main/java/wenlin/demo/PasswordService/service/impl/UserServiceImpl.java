@@ -8,6 +8,7 @@ import wenlin.demo.PasswordService.dataobject.UserInGroups;
 import wenlin.demo.PasswordService.service.UserService;
 import wenlin.demo.PasswordService.utils.DataCleaner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,7 +46,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-    // TODO : how about all the fields are null
     /**
      * findByFields find a SystemUser by input fields
      * @param name String
@@ -61,16 +61,16 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByFields(name, uid, gid, comment, home, bin);
     }
 
-    // TODO : Try to return a list
     /**
      * findUserGroups find every group that contains current user by user name.
      * @param name String
      * @return UserInGroups
      */
-    public UserInGroups findUserGroups(String name) {
+    public List<UserInGroups> findUserGroups(String name) {
         String likeName = "%"+name+"%";
         List<Object[]> queryResult = userRepository.findByJoinGroups(name, likeName);
-        return dataCleaner.getUserGroups(queryResult);
+        UserInGroups userInGroups = dataCleaner.getUserGroups(queryResult);
+        return new ArrayList<UserInGroups>(){{ add(userInGroups); }};
     }
 
     @Autowired

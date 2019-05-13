@@ -45,7 +45,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/{id}/groups")
-    public UserInGroups getUserGroups(@PathVariable("id") String id) {
+    public List<UserInGroups> getUserGroups(@PathVariable("id") String id) {
         SystemUser user = userServiceImpl.findByUid(Integer.valueOf(id));
         String userName = user.getName();
         return userServiceImpl.findUserGroups(userName);

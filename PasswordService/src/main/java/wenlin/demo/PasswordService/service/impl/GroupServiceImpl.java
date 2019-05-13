@@ -1,6 +1,5 @@
 package wenlin.demo.PasswordService.service.impl;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wenlin.demo.PasswordService.dao.GroupRepository;
@@ -22,7 +21,7 @@ import java.util.List;
 @Service
 public class GroupServiceImpl implements GroupService {
 
-    GroupRepository groupRepository;
+    private GroupRepository groupRepository;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -39,6 +38,7 @@ public class GroupServiceImpl implements GroupService {
 
     /**
      * findAll return all SystemGroup in the database
+     *
      * @return List<SystemGroup>
      */
     public List<SystemGroup> findAll() {
@@ -47,6 +47,7 @@ public class GroupServiceImpl implements GroupService {
 
     /**
      * save Save an input SystemGroup object into database
+     *
      * @param systemGroup
      * @return SystemGroup or throw exception when input is null
      */
@@ -56,8 +57,9 @@ public class GroupServiceImpl implements GroupService {
 
     /**
      * findGroupByCriteria find a group by input fields
-     * @param name String
-     * @param gid int
+     *
+     * @param name    String
+     * @param gid     int
      * @param members List<String>
      * @return List<SystemGroup>
      */

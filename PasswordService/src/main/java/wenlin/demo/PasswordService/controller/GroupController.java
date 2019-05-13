@@ -29,7 +29,6 @@ public class GroupController {
         return group;
     }
 
-    // TODO :Finished method
     @GetMapping(value = "/query")
     public List<SystemGroup> findGroupsByFields(@RequestParam(required = false, value = "name") String name,
                                                 @RequestParam(required = false, value = "gid") Integer gid,
