@@ -1,5 +1,6 @@
 package wenlin.demo.PasswordService.utils;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import wenlin.demo.PasswordService.dataobject.SystemGroup;
 import wenlin.demo.PasswordService.dataobject.SystemUser;
@@ -52,6 +53,7 @@ public class DataCleaner {
         return line.startsWith(COMMENT_SIGN);
     }
 
+    // TODO : Write error records into file
     /**
      * groupMapper map input line into a SystemGroup object
      *
@@ -63,8 +65,9 @@ public class DataCleaner {
         if (fields.length != GROUP_FIELDS_LENGTH) {
             return null;
         }
-        return new SystemGroup(fields[0], Integer.valueOf(fields[2]),
-                Arrays.asList(fields[3].split(DELIMITER)));
+        List<String> members = StringUtils.isBlank(fields[3]) ?
+                new ArrayList<>() : Arrays.asList(fields[3].split(DELIMITER));
+        return new SystemGroup(fields[0], Integer.valueOf(fields[2]), members);
     }
 
     /**
