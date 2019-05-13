@@ -27,12 +27,11 @@ public class GroupServiceImpl implements GroupService {
     @PersistenceContext
     private EntityManager entityManager;
 
-    // TODO : how about group id doesn't exist
     /**
      * findByGid find a group by group id
      *
      * @param gid int
-     * @return SystemGroup
+     * @return SystemGroup if group record exist, otherwise null
      */
     public SystemGroup findByGid(int gid) {
         return groupRepository.findByGid(gid);
@@ -46,11 +45,10 @@ public class GroupServiceImpl implements GroupService {
         return groupRepository.findAll();
     }
 
-    // TODO : how about insert null
     /**
      * save Save an input SystemGroup object into database
      * @param systemGroup
-     * @return SystemGroup
+     * @return SystemGroup or throw exception when input is null
      */
     public SystemGroup save(SystemGroup systemGroup) {
         return groupRepository.save(systemGroup);

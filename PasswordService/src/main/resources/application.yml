@@ -1,1 +1,8 @@
+spring:
+  h2:
+    console:
+      enabled: true
 
+data:
+  userFile: /etc/passwd
+  groupFile: /etc/group

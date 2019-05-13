@@ -19,7 +19,6 @@ public class UserServiceImpl implements UserService {
 
     private DataCleaner dataCleaner;
 
-    // TODO : how about uid doesn't exist
     /**
      * findByUid find a SystemUser by input user id
      * @param uid int
@@ -37,11 +36,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
-    // TODO : how about fail to insert the object
     /**
      * save save an input SystemUser
      * @param user SystemUser
-     * @return SystemUser
+     * @return SystemUser or throw exception when fail
      */
     public SystemUser save(SystemUser user) {
         return userRepository.save(user);
@@ -58,7 +56,7 @@ public class UserServiceImpl implements UserService {
      * @param bin String
      * @return List<SystemUser>
      */
-    public List<SystemUser> findByFields(String name, String uid, String gid,
+    public List<SystemUser> findByFields(String name, int uid, int gid,
                                    String comment, String home, String bin) {
         return userRepository.findByFields(name, uid, gid, comment, home, bin);
     }
