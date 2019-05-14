@@ -4,12 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.core.AutoConfigureCache;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-import wenlin.demo.PasswordService.dao.GroupRepository;
-import wenlin.demo.PasswordService.dao.UserRepository;
 import wenlin.demo.PasswordService.dataobject.SystemGroup;
 import wenlin.demo.PasswordService.dataobject.SystemUser;
 import wenlin.demo.PasswordService.dataobject.UserInGroups;
@@ -22,13 +19,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@ActiveProfiles("test")
 class UserServiceImplTest {
 
     private UserServiceImpl userServiceImpl;
     private GroupServiceImpl groupServiceImpl;
-
-    private UserRepository userRepository;
-    private GroupRepository groupRepository;
 
     @BeforeEach
     @Transactional
@@ -136,13 +131,4 @@ class UserServiceImplTest {
         this.groupServiceImpl = groupServiceImpl;
     }
 
-    @Autowired
-    public void setGroupRepository(GroupRepository groupRepository) {
-        this.groupRepository = groupRepository;
-    }
-
-    @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 }

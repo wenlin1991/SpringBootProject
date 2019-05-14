@@ -1,6 +1,9 @@
 package wenlin.demo.PasswordService.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import wenlin.demo.PasswordService.reader.GroupReader;
 import wenlin.demo.PasswordService.reader.UserReader;
@@ -14,10 +17,16 @@ import java.io.IOException;
  * @author wenlin
  */
 @Service
-public class DataLoader {
+@Profile("!test")
+public class DataLoader implements ApplicationRunner {
 
     private GroupReader groupReader;
     private UserReader userReader;
+
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
+        load();
+    }
 
     /**
      * load load data into database for SystemGroup and SystemUser
@@ -37,4 +46,5 @@ public class DataLoader {
     public void setUserReader(UserReader userReader) {
         this.userReader = userReader;
     }
+
 }
