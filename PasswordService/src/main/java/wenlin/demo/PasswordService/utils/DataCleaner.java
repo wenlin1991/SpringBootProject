@@ -1,6 +1,8 @@
 package wenlin.demo.PasswordService.utils;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import wenlin.demo.PasswordService.dataobject.SystemGroup;
 import wenlin.demo.PasswordService.dataobject.SystemUser;
@@ -23,6 +25,8 @@ import java.util.List;
 @Component
 public class DataCleaner {
 
+    private static final Logger log = LoggerFactory.getLogger(DataCleaner.class);
+
     private static final String COMMENT_SIGN = "#";
     private static final String DELIMITER = ":";
     private static final int GROUP_FIELDS_LENGTH = 4;
@@ -37,6 +41,7 @@ public class DataCleaner {
     public boolean isValidFile(String fileName) throws IOException {
         Path filePath = Paths.get(fileName);
         if (!Files.isRegularFile(filePath) || !Files.isReadable(filePath)) {
+            log.error(String.format("Cannot read input file %s", fileName));
             throw new IOException("Cannot read input file!");
         }
         return true;
@@ -93,7 +98,7 @@ public class DataCleaner {
     }
 
     /**
-     * getUserGroups parse input to UserInGroups object
+     * findUserGroups parse input to UserInGroups object
      *
      * @param input List<Object[]>
      * @return UserInGroups

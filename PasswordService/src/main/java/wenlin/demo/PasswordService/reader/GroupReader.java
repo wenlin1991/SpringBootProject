@@ -49,7 +49,6 @@ public class GroupReader {
                     if (group != null) {
                         groupServiceImpl.save(group);
                     } else {
-                        // TODO : Make log better, try to get line number
                         log.error("Fail to insert data!");
                     }
                 }

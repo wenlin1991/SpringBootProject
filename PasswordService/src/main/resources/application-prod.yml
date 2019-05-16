@@ -1,17 +1,14 @@
 spring:
-  profiles:
-    active: dev
   h2:
     console:
       enabled: true
   jpa:
     show-sql: false
   datasource:
-    jdbc-url: jdbc:h2:mem:testprimarydb;DB_CLOSE_DELAY=-1
+    jdbc-url: jdbc:h2:mem:primarydb;DB_CLOSE_DELAY=-1
     username: sa
     password:
     driver-class-name: org.h2.Driver
 data:
-  userFile: /some/user
-  groupFile: /some/group
-
+  userFile: /etc/passwd
+  groupFile: /etc/group

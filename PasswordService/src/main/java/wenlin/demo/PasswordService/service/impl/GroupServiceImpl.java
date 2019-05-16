@@ -80,10 +80,12 @@ public class GroupServiceImpl implements GroupService {
         List<SystemGroup> tempResult = entityManager.createQuery(query).getResultList();
         List<SystemGroup> remove = new ArrayList<>();
 
-        for (SystemGroup group : tempResult) {
-            for (String member : members) {
-                if (!group.getMembers().contains(member)) {
-                    remove.add(group);
+        if (members != null) {
+            for (SystemGroup group : tempResult) {
+                for (String member : members) {
+                    if (!group.getMembers().contains(member)) {
+                        remove.add(group);
+                    }
                 }
             }
         }

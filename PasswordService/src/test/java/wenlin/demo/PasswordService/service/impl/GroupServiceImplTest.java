@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Profile;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import wenlin.demo.PasswordService.dataobject.SystemGroup;
@@ -14,8 +14,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest()
@@ -28,7 +27,10 @@ class GroupServiceImplTest {
     @BeforeEach
     @Transactional
     public void setUp() {
-        members = new ArrayList<String>(){{ add("A"); add("B"); }};
+        members = new ArrayList<String>() {{
+            add("A");
+            add("B");
+        }};
         SystemGroup root = new SystemGroup("root", 1, members);
         SystemGroup docker = new SystemGroup("docker", 2, members);
         groupServiceImpl.save(root);
@@ -56,7 +58,7 @@ class GroupServiceImplTest {
     @Test
     void whenFindAll_ReturnAllGroups() {
         List<SystemGroup> groups = groupServiceImpl.findAll();
-        assertEquals(2, groups.size());
+        assertEquals(3, groups.size());
     }
 
     @Test
@@ -64,6 +66,7 @@ class GroupServiceImplTest {
     void whenSave_ThenSaveInputAndReturnSavedGroup() {
         SystemGroup thirdGroup = new SystemGroup("kubernetes", 3, members);
         SystemGroup result = groupServiceImpl.save(thirdGroup);
+        assertNotNull(result);
         assertEquals(thirdGroup.getGid(), result.getGid());
         assertEquals(3, groupServiceImpl.findAll().size());
     }

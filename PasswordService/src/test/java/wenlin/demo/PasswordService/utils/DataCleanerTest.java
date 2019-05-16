@@ -11,6 +11,7 @@ import wenlin.demo.PasswordService.dataobject.SystemGroup;
 import wenlin.demo.PasswordService.dataobject.SystemUser;
 import wenlin.demo.PasswordService.dataobject.UserInGroups;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -84,12 +85,6 @@ class DataCleanerTest {
         String input = "-100:100:Unprivileged User:/any/empty:/any/bin/you/like";
         SystemUser user = dataCleaner.userMapper(input);
         assertNull(user);
-    }
-
-    // TODO : fix test
-    @Test
-    void getUserGroups() {
-        List<Object[]> input = new ArrayList<>();
     }
 
     @Autowired

@@ -50,7 +50,6 @@ public class UserReader {
                     if (user != null) {
                         userServiceImpl.save(user);
                     } else {
-                        // TODO : Make log better, try to get line number
                         log.error("Fail to insert user!");
                     }
                 }

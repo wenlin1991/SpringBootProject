@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import wenlin.demo.PasswordService.dataobject.SystemGroup;
@@ -20,14 +21,16 @@ import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles("test")
+@Rollback
 class UserServiceImplTest {
 
     private UserServiceImpl userServiceImpl;
     private GroupServiceImpl groupServiceImpl;
 
     @BeforeEach
-    @Transactional
+//    @Transactional
     public void setUp() {
+        userServiceImpl.findAll();
         SystemUser root = new SystemUser.Builder()
                 .setUid(1)
                 .setGid(1)
@@ -67,7 +70,7 @@ class UserServiceImplTest {
     @Test
     void whenFindAll_ReturnAllUsers() {
         List<SystemUser> users = userServiceImpl.findAll();
-        assertEquals(2, users.size());
+        assertEquals(3, users.size());
     }
 
     @Test
@@ -100,10 +103,9 @@ class UserServiceImplTest {
     void whenFindByNullFields_ReturnAllUsers() {
         List<SystemUser> result = userServiceImpl.findByFields(null, null, null,
                 null, null, null);
-        assertEquals(2, result.size());
+        assertEquals(3, result.size());
     }
 
-    // TODO : Fix test
     @Test
     @Transactional
     void findUserGroups() {
