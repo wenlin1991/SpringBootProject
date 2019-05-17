@@ -1,0 +1,5 @@
+somebody:*:-200:
+somegroup:*:-111:
+wheel:*:0:root
+daemon:*:31:root
+kmem:*:28:root
