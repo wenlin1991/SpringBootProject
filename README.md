@@ -43,7 +43,7 @@ Password Service is a minimal HTTP service that exposes the user and group infor
 ### 3.2 Run & Debug
 
 - Run with script
-  - You can find the `runJob.sh` script in the cloned project. Please use the following command to run the script `./runJob.sh` in terminal.
+  - You can find the `runJob.sh` script in the `test` folder within the cloned project. Please use the following command to run the script `./runJob.sh` in terminal.
 - The `runJob.sh` script already enabled debug mode. Currently, the debug port is `5005`, please change the port accordingly. 
 
 
