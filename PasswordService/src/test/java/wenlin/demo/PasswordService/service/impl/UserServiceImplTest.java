@@ -28,7 +28,6 @@ class UserServiceImplTest {
     private GroupServiceImpl groupServiceImpl;
 
     @BeforeEach
-//    @Transactional
     public void setUp() {
         userServiceImpl.findAll();
         SystemUser root = new SystemUser.Builder()

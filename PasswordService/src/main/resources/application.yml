@@ -11,7 +11,7 @@ spring:
     username: sa
     password:
     driver-class-name: org.h2.Driver
+
 data:
   userFile: /some/user
   groupFile: /some/group
-
