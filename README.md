@@ -43,7 +43,13 @@ Password Service is a minimal HTTP service that exposes the user and group infor
 ### 3.2 Run & Debug
 
 - Run with script
+  
   - You can find the `runJob.sh` script in the `test` folder within the cloned project. Please use the following command to run the script `./runJob.sh` in terminal.
+  
+    > **CAUTION**
+    >
+    > 1. Sample data has been provided in the ***test*** folder. However, the test may not be enough for you to test all the wanted function. Please use your own data and change the `runJob.sh` accordingly for thoroughly tests. 
+    > 2. If you don't want to build the project with `mvn clean install`, a fat jar file has been provided in the ***test*** folder, which is ready to run. 
 - The `runJob.sh` script already enabled debug mode. Currently, the debug port is `5005`, please change the port accordingly. 
 
 
